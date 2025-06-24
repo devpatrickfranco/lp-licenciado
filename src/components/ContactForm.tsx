@@ -38,7 +38,7 @@ const ContactForm = () => {
         alert('Obrigado! Entraremos em contato em breve.');
 
         setTimeout(() => {
-          window.location.href = 'https://calendly.com/damafacefranchising/reuniao';
+          window.location.href = 'https://calendly.com/damafacefranchising/ ';
         }, 3000);
       })
       .catch((error) => {
