@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { Send, Shield, Star } from 'lucide-react';
+import axios from 'axios';
+
 
 const ContactForm = () => {
   const [formData, setFormData] = useState({
@@ -13,10 +15,22 @@ const ContactForm = () => {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    // Handle form submission
-    console.log('Form submitted:', formData);
-    alert('Obrigado! Entraremos em contato em breve.');
+
+    axios.post('https://n8n-n8n.i4khe5.easypanel.host/webhook/lp-licenciamento', formData)
+      .then(() => {
+        console.log('Form submitted:', formData);
+        alert('Obrigado! Entraremos em contato em breve.');
+
+        setTimeout(() => {
+          window.location.href = 'https://calendly.com/damafacefranchising/reuniao';
+        }, 3000); // 3 segundos
+      })
+      .catch((error) => {
+        console.error('Erro ao enviar formulário:', error);
+        alert('Ocorreu um erro ao enviar o formulário. Tente novamente.');
+      });
   };
+
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
     setFormData({
