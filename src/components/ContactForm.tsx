@@ -1,8 +1,24 @@
-import React, { useState } from 'react';
+'use client';
+
+import React, { useState, ChangeEvent } from 'react';
 import { motion } from 'framer-motion';
 import { Send, Shield, Star } from 'lucide-react';
 import axios from 'axios';
 
+// Função de máscara de telefone
+function phoneMask(value: string): string {
+  const digits = value.replace(/\D/g, '');
+  if (digits.length <= 2) return digits;
+
+  const ddd = digits.slice(0, 2);
+  const rest = digits.slice(2);
+
+  if (rest.length <= 8) {
+    return `(${ddd}) ${rest.slice(0, 4)}${rest.length > 4 ? '-' + rest.slice(4) : ''}`;
+  } else {
+    return `(${ddd}) ${rest.slice(0, 5)}-${rest.slice(5, 9)}`;
+  }
+}
 
 const ContactForm = () => {
   const [formData, setFormData] = useState({
@@ -23,7 +39,7 @@ const ContactForm = () => {
 
         setTimeout(() => {
           window.location.href = 'https://calendly.com/damafacefranchising/reuniao';
-        }, 3000); // 3 segundos
+        }, 3000);
       })
       .catch((error) => {
         console.error('Erro ao enviar formulário:', error);
@@ -31,16 +47,18 @@ const ContactForm = () => {
       });
   };
 
+  const handleChange = (e: ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
+    const { name, value } = e.target;
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
-    setFormData({
-      ...formData,
-      [e.target.name]: e.target.value
-    });
+    if (name === 'telefone') {
+      setFormData({ ...formData, telefone: phoneMask(value) });
+    } else {
+      setFormData({ ...formData, [name]: value });
+    }
   };
 
   return (
-    <motion.div 
+    <motion.div
       id="contact-form"
       className="bg-white/95 backdrop-blur-sm rounded-2xl p-8 shadow-2xl border border-gray-200"
       initial={{ opacity: 0, scale: 0.9 }}
