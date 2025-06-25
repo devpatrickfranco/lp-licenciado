@@ -39,7 +39,7 @@ const ContactForm = () => {
 
         setTimeout(() => {
           window.location.href = 'https://calendly.com/damafacefranchising/ ';
-        }, 3000);
+        }, 2000);
       })
       .catch((error) => {
         console.error('Erro ao enviar formulário:', error);

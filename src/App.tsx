@@ -7,7 +7,7 @@ import Investment from './components/Investment';
 import Testimonials from './components/Testimonials';
 import FinalCTA from './components/FinalCTA';
 import Footer from './components/Footer';
-
+import ChatWidget from './components/ChatWidget/ChatWidget';
 
 
 function App() {
@@ -20,6 +20,7 @@ function App() {
       <Investment />
       <Testimonials />
       <FinalCTA />
+      <ChatWidget />
       <Footer />
     </div>
   );
