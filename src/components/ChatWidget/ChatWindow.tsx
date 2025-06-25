@@ -133,8 +133,8 @@ const ChatWindow: React.FC<ChatWindowProps> = ({ isOpen, onClose }) => {
   if (!isOpen) return null;
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-end justify-end p-4 z-50 md:items-start md:justify-end md:pt-20 md:pb-8">
-      <div className="bg-white rounded-t-2xl md:rounded-2xl shadow-2xl w-full max-w-md h-[80vh] md:h-[600px] md:mr-4 md:mb-4 flex flex-col animate-in slide-in-from-bottom-5 md:slide-in-from-right-5 duration-300">
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-end p-4 z-50">
+      <div className="bg-white rounded-t-2xl md:rounded-2xl shadow-2xl w-full max-w-md h-[80vh] md:h-[600px] md:mr-4 md:mb-4 flex flex-col animate-in slide-in-from-bottom-5 md:slide-in-from-right-5 duration-300 mb-6">
         {/* Header */}
         <div className="bg-gradient-to-r from-pink-500 to-pink-600 text-white p-4 rounded-t-2xl md:rounded-t-2xl flex items-center justify-between">
           <div>

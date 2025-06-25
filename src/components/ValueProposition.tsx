@@ -15,14 +15,14 @@ const ValueProposition = () => {
       icon: ShoppingCart,
       title: "Central de Compras Premium",
       subtitle: "Descontos Exclusivos de até 30%",
-      description: "Acesso a descontos especiais nos principais laboratórios: Merz, Allergan, Rennova, VictaLab, Galderma, Pharmaestetica, Biometikal e Bioage. Reduza custos e aumente sua margem.",
+      description: "Acesso a descontos especiais nos principais laboratórios: Merz, Allergan, Rennova, VictaLab, Galderma, Pharmaestetica, Sinclair e Bioage. Reduza custos e aumente sua margem.",
       color: "from-blue-500 to-cyan-500"
     },
     {
       icon: CreditCard,
       title: "DamaPay",
-      subtitle: "Receba à Vista, Venda em 24x",
-      description: "Sistema exclusivo que elimina inadimplência e aumenta sua conversão. Ofereça parcelamento sem risco, receba o valor integral imediatamente e foque no que mais importa: seus pacientes.",
+      subtitle: "Receba em d+1, Venda em 24x e Venda Recorrente",
+      description: "Sistema exclusivo que elimina inadimplência e aumenta sua conversão. Ofereça parcelamento sem risco, receba o valor integral imediatamente e foque no que mais importa: seus pacientes. Implemente planos de assinatura e pagamentos recorrentes para seus pacientes, garantindo fluxo de caixa estável e maior retenção.",
       color: "from-green-500 to-emerald-500"
     },
     {
