@@ -26,7 +26,8 @@ const ContactForm = () => {
     email: '',
     telefone: '',
     faturamento: '',
-    especialidade: ''
+    especialidade: '',
+    aceite: false,
   });
 
   const handleSubmit = (e: React.FormEvent) => {
@@ -38,7 +39,7 @@ const ContactForm = () => {
         alert('Obrigado! Entraremos em contato em breve.');
 
         setTimeout(() => {
-          window.location.href = 'https://calendly.com/damafacefranchising/ ';
+          window.location.href = 'https://pay.kiwify.com.br/vEzQ7T3';
         }, 2000);
       })
       .catch((error) => {
@@ -48,10 +49,11 @@ const ContactForm = () => {
   };
 
   const handleChange = (e: ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
-    const { name, value } = e.target;
-
+    const { name, value, type } = e.target;
     if (name === 'telefone') {
       setFormData({ ...formData, telefone: phoneMask(value) });
+    } else if (type === 'checkbox' && e.target instanceof HTMLInputElement) {
+      setFormData({ ...formData, [name]: e.target.checked });
     } else {
       setFormData({ ...formData, [name]: value });
     }
@@ -178,9 +180,50 @@ const ContactForm = () => {
           whileHover={{ scale: 1.05 }}
           whileTap={{ scale: 0.95 }}
         >
-          <span>Agendar Minha Reunião Estratégica</span>
+          <span>Quero implantar agora</span>
           <Send size={20} />
         </motion.button>
+
+        <div className="flex items-start space-x-2 mt-4">
+          <input
+            type="checkbox"
+            id="aceite"
+            name="aceite"
+            required
+            checked={formData.aceite}
+            onChange={handleChange}
+            className="mt-1"
+          />
+
+          <label htmlFor="aceite" className="text-sm text-gray-700">
+            Ao se cadastrar, você concorda com os&nbsp;
+            <a
+              href="/#termos-uso"
+              className="text-primary underline hover:text-primary-dark"
+              onClick={e => {
+                e.preventDefault();
+                window.location.hash = "termos-uso";
+                window.location.reload();
+            }}
+            >
+              Termos de Serviço
+            </a>
+            &nbsp;e&nbsp;
+            <a
+              href="/#privaci-politic"
+              className="text-primary underline hover:text-primary-dark"
+              onClick={e => {
+                e.preventDefault();
+                  window.location.hash = "privaci-politic";
+                  window.location.reload();
+                }}
+            >
+              Política de Privacidade
+            </a>
+            .
+          </label>
+      </div>
+
 
         <div className="flex items-center justify-center space-x-2 text-sm text-gray-500 mt-4">
           <Shield size={16} />

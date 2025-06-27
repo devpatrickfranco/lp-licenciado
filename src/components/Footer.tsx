@@ -1,10 +1,42 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { Mail, Phone, MapPin, Shield, FileText } from 'lucide-react';
 
 const Footer: React.FC = () => {
-  const [showPolitica, setShowPolitica] = useState(false);
+const [showPolitica, setShowPolitica] = useState(false);
   const [showTermos, setShowTermos] = useState(false);
+
+  // Quando carregar a página, verifica o hash e abre o modal certo
+  useEffect(() => {
+    if (window.location.hash === '#privaci-politic') {
+      setShowPolitica(true);
+    } else if (window.location.hash === '#termos-uso') {
+      setShowTermos(true);
+    }
+  }, []);
+
+  // Quando abrir Política
+  const handleOpenPolitica = () => {
+    setShowPolitica(true);
+    window.location.hash = 'privaci-politic';
+  };
+
+  // Quando abrir Termos
+  const handleOpenTermos = () => {
+    setShowTermos(true);
+    window.location.hash = 'termos-uso';
+  };
+
+  // Quando fechar (remove hash)
+  const handleClosePolitica = () => {
+    setShowPolitica(false);
+    history.pushState("", document.title, window.location.pathname + window.location.search);
+  };
+
+  const handleCloseTermos = () => {
+    setShowTermos(false);
+    history.pushState("", document.title, window.location.pathname + window.location.search);
+  };
 
   // Conteúdo dos modais (pode ser movido para arquivos separados)
  const politicaContent = (
@@ -381,7 +413,7 @@ const termosContent = (
             <h4 className="text-lg font-semibold mb-6 text-primary">Legal</h4>
             <div className="space-y-3">
               <button
-                onClick={() => setShowPolitica(true)}
+                onClick={handleOpenPolitica}
                 className="flex items-center space-x-3 text-gray-400 hover:text-white transition-colors group w-full text-left p-0 bg-transparent border-0"
               >
                 <FileText className="group-hover:text-accent transition-colors" size={16} />
@@ -389,7 +421,7 @@ const termosContent = (
               </button>
 
               <button
-                onClick={() => setShowTermos(true)}
+                onClick={handleOpenTermos}
                 className="flex items-center space-x-3 text-gray-400 hover:text-white transition-colors group w-full text-left p-0 bg-transparent border-0"
               >
                 <FileText className="group-hover:text-accent transition-colors" size={16} />
@@ -419,7 +451,7 @@ const termosContent = (
       {/* Modais */}
       <Modal 
         isOpen={showPolitica}
-        onClose={() => setShowPolitica(false)}
+        onClose={handleClosePolitica}
         title="Política de Privacidade"
       >
         {politicaContent}
@@ -427,7 +459,7 @@ const termosContent = (
 
       <Modal 
         isOpen={showTermos}
-        onClose={() => setShowTermos(false)}
+        onClose={handleCloseTermos}
         title="Termos de Uso"
       >
         {termosContent}
